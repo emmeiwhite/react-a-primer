@@ -49,6 +49,8 @@ class Parent extends Component{
             <div>
                 <h1>{this.state.parent_money}</h1>
 
+                
+
                 {this.props.playAround()} {/* what if we use : this.props.playAround, we'll get warning */}
 
                 <ul>       
