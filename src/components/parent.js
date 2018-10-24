@@ -48,6 +48,9 @@ class Parent extends Component{
             
             <div>
                 <h1>{this.state.parent_money}</h1>
+
+                {this.props.playAround()} {/* what if we use : this.props.playAround, we'll get warning */}
+
                 <ul>       
                     {
                         this.state.posts.map((posts)=>{
@@ -55,6 +58,7 @@ class Parent extends Component{
                         })
                     } 
                 </ul>
+                
             </div>
 
             // Since No Other Component is rendering within the Parent, Now componentDidMount() will be called, which inturn makes an AJAX call to an API
@@ -63,7 +67,8 @@ class Parent extends Component{
 }
 
 Parent.propTypes = {
-    money:PropTypes.number
+    money:PropTypes.number,
+    playAround:PropTypes.func
 }
 
 export default Parent;
