@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 // import {Router,Route,browserHistory,Link,IndexRoute} from 'react-router'; This is version 3, but we now use version 4
 
-import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Link,NavLink, Switch} from 'react-router-dom';
 
 import {Prompt} from 'react-router';
 
@@ -52,7 +52,7 @@ class Form extends Component{
         return(
            <div>
                    <Prompt 
-                        when={this.state.isChanged} 
+                        when={this.state.isChanged === true} 
                         message="Are you sure you want to submit the details" />
                    <input type="text" className="form-control" onChange={()=>{
                        this.setState({
@@ -72,11 +72,21 @@ ReactDOM.render(
             </section>
 
             <section className="col-md-9">
-                <Route path="/" exact component={App} />
-                <Route path="/child" exact component={Child} />
-                {/* Nested Route in Version 4 */}
-                <Route path="/about" component={About}/>
-                <Route path="/form" component={Form}/>
+                <Switch>
+                    <Route path="/" exact component={App} />
+                    <Route path="/child" exact component={Child} />
+                    {/* Nested Route in Version 4 */}
+                    <Route path="/about" component={About}/>
+                    <Route path="/form" component={Form}/>
+                    {/* When a user types a mismatched path */}
+                    <Route render= {
+                        ()=>{
+                            return(
+                                <h1>404 ERROR ! Wrong path ! path Mismatch</h1>
+                            )
+                        }
+                    } />
+                </Switch>
             </section>
         </div>
     </Router>
