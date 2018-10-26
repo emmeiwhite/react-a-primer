@@ -13,10 +13,14 @@ code {
     monospace;
 }
 
-.header_links{
+/* .header_links{
   text-align:center;
+  list-style: none;
 }
 
-.header_links Link{
-  padding:2rem;
-}
+.header_links li{
+  margin-left:1rem;
+  display: inline-block;
+} */
+
+/* For NavLInk activeClassName */

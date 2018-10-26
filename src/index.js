@@ -1,8 +1,10 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 // import {Router,Route,browserHistory,Link,IndexRoute} from 'react-router'; This is version 3, but we now use version 4
 
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom';
+
+import {Prompt} from 'react-router';
 
 import App from './App';
 import Child from './components/child';
@@ -15,9 +17,11 @@ import * as serviceWorker from './serviceWorker';
 // Let's create some Components- Functional Components and Learn Nested Routes
 const Links = ()=>{
     return(
-        <div className="header_links">
-            <Link to="/">Home</Link>
-            <Link to="/child">Child</Link>
+        <div className="list-group">    
+                <NavLink  className="list-group-item" exact activeClassName="active" to="/">Home</NavLink>
+                <NavLink  className="list-group-item" exact activeClassName="active" to="/child">Child</NavLink>
+                <NavLink  className="list-group-item" exact activeClassName="active" to="/about">About</NavLink>
+                <NavLink  className="list-group-item" exact activeClassName="active" to="/form">Form</NavLink>               
         </div>
         
     )
@@ -28,22 +32,53 @@ const About = ()=>{
     return (
     <div>
         <h2>About Page</h2>
-        {/* <Link to="/">Root Component</Link> */}
+        {/* <NavLink to="/">Root Component</NavLink> */}
     </div>
     );
 }
 
+// 26-10-2018
+
+class Form extends Component{
+    constructor(props){
+        super(props);
+
+        this.state = {
+            isChanged:false
+        }
+    }
+
+    render(){
+        return(
+           <div>
+                   <Prompt 
+                        when={this.state.isChanged} 
+                        message="Are you sure you want to submit the details" />
+                   <input type="text" className="form-control" onChange={()=>{
+                       this.setState({
+                           isChanged:true
+                       })
+                   }} placeholder="Once you write Prompt will pop up"/>
+           </div>
+        )
+    }
+}
+
 ReactDOM.render(
     <Router>
-        <React.Fragment>
-            <Links/>
-            <Route path="/" exact component={App} />
-            <Route path="/child" exact component={Child} />
-            {/* Nested Route*/}
-            <Route path="/about" component={About}>
+        <div className="row">
+            <section className="col-md-3">
+                  <Links/>
+            </section>
 
-            </Route>
-        </React.Fragment>
+            <section className="col-md-9">
+                <Route path="/" exact component={App} />
+                <Route path="/child" exact component={Child} />
+                {/* Nested Route in Version 4 */}
+                <Route path="/about" component={About}/>
+                <Route path="/form" component={Form}/>
+            </section>
+        </div>
     </Router>
    , document.getElementById('root'));
 
