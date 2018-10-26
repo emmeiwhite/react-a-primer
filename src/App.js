@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Parent from './components/parent';
+import ModalPopUp from './components/modal-example';
 
 class App extends Component {
   constructor(props){
@@ -67,6 +68,8 @@ class App extends Component {
           money={this.state.rootMoney}
           playAround={this.playAround}
           />
+
+        <ModalPopUp />
          
       </div>
     );
