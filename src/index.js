@@ -8,6 +8,7 @@ import {Prompt} from 'react-router';
 
 import App from './App';
 import Child from './components/child';
+import ControlledForm from './components/controlled_component';
 
 import './index.css';
 
@@ -21,6 +22,7 @@ const Links = ()=>{
                 <NavLink  className="list-group-item" exact activeClassName="active" to="/">Home</NavLink>
                 <NavLink  className="list-group-item" exact activeClassName="active" to="/child">Child</NavLink>
                 <NavLink  className="list-group-item" exact activeClassName="active" to="/about">About</NavLink>
+                <NavLink  className="list-group-item" exact activeClassName="active" to="/controlled">ControlledForm</NavLink>
                 <NavLink  className="list-group-item" exact activeClassName="active" to="/form">Form</NavLink>               
         </div>
         
@@ -78,6 +80,7 @@ ReactDOM.render(
                     {/* Nested Route in Version 4 */}
                     <Route path="/about" component={About}/>
                     <Route path="/form" component={Form}/>
+                    <Route path="/controlled" component={ControlledForm}/>
                     {/* When a user types a mismatched path */}
                     <Route render= {
                         ()=>{
